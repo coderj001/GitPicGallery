@@ -2,6 +2,7 @@
 # schema.py
 
 from pydantic import BaseModel
+from datetime import datetime
 
 
 class GitUsername(BaseModel):
@@ -14,3 +15,11 @@ class GitUsername(BaseModel):
                 "username": "coderj001"
             }
         }
+
+
+class GitPics(BaseModel):
+    git_id: str
+    create_at: datetime
+
+    class Config:
+        orm_mode = True
