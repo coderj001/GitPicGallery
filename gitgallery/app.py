@@ -3,6 +3,7 @@
 
 from fastapi import APIRouter, status
 from gitgallery.schema import GitUsername
+from gitgallery.scraper import scraper
 
 router = APIRouter()
 
@@ -14,4 +15,7 @@ def all():
 
 @router.post('/add', status_code=status.HTTP_201_CREATED)
 def add(request: GitUsername):
-    return request
+    img = scraper(request.username)
+    return {
+        'image': img
+    }

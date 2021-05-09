@@ -1,19 +1,26 @@
 #!/usr/bin/env python3
 # scraper.py
+import json
+
 import requests
-from bs4 import BeautifulSoup
+from requests.exceptions import HTTPError
 
-BASE_URL = "http://github.com"
+BASE_URL = "https://api.github.com/users"
 
 
-def scraper(username: str = ''):
-    req = requests.get(f'{BASE_URL}/{username}')
-    soup = BeautifulSoup(req.content, "html.parser")
-    img = soup.find(
-        'img',
-        class_='avatar avatar-user width-full border color-bg-primary',
-    )
-    return img['src']
+def scraper(username: str = '') -> str:
+    try:
+        responce = requests.get(f'{BASE_URL}/{username}')
+        responce.raise_for_status()
+        js = json.loads(responce.text)
+        _id = js.get('id')
+        return f"https://avatars.githubusercontent.com/u/{_id}"
+    except HTTPError as http_err:
+        print(f"HTTP error occurred: {http_err}")
+    except Exception as e:
+        print(f"HTTP error occurred: {e}")
+    else:
+        print(f"Success! {username}")
 
 
 if __name__ == "__main__":
