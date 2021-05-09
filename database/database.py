@@ -2,11 +2,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///.gitgallery.db"
+from config import setting
 
 engine = create_engine(
-    SQLALCHEMY_DATABASE_URL,
-    connect_args={'check_same_thread': False}
+    setting.DB_URL,
+    connect_args={'check_same_thread': False},
 )
 
 SessionLocal = sessionmaker(
@@ -15,14 +15,17 @@ SessionLocal = sessionmaker(
     bind=engine
 )
 
+Base = declarative_base()
 
-def get_db():
+
+def get_db() -> SessionLocal:
     """function for getting local session
 
     :returns: SessionLocal
     """
-    db = SessionLocal()
+    db = None
     try:
+        db = SessionLocal()  # create session from SQLAlchemy sessionmaker
         yield db
     except Exception as e:
         raise f"DB ERROR: {e}"

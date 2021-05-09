@@ -3,12 +3,14 @@
 
 from fastapi import FastAPI
 
+from config import setting
 from database.database import engine
 from gitgallery.app import router as gitgallery_router
+from models import Base
 
 app = FastAPI()
 
-# engine.metadata.create_all()
+Base.metadata.create_all(engine)
 
 app.include_router(
     gitgallery_router,
@@ -20,7 +22,7 @@ if __name__ == "__main__":
     import uvicorn
     uvicorn.run(
         "main:app",
-        host='127.0.0.1',
-        port=8000,
-        reload=True
+        host=setting.HOST,
+        port=setting.PORT,
+        reload=setting.DEBUG_MODE
     )

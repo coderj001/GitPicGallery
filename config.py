@@ -3,7 +3,7 @@ from pydantic import BaseSettings
 
 class CommonSettings(BaseSettings):
     APP_NAME: str = "GitGallery"
-    debug: bool = True
+    DEBUG_MODE: bool = True
 
 
 class ServerSettings(BaseSettings):
@@ -12,8 +12,8 @@ class ServerSettings(BaseSettings):
 
 
 class DatabaseSettings(BaseSettings):
-    DB_URL: str
-    DB_NAME: str
+    DB_URL: str = "sqlite:///./gitgallery.db"
+    DB_NAME: str = "gitgallery"
 
 
 class Setting(CommonSettings, ServerSettings, DatabaseSettings):
