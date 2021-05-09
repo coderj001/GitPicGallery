@@ -14,7 +14,7 @@ def scraper(username: str = '') -> str:
         responce.raise_for_status()
         js = json.loads(responce.text)
         _id = js.get('id')
-        return f"https://avatars.githubusercontent.com/u/{_id}"
+        return _id
     except HTTPError as http_err:
         print(f"HTTP error occurred: {http_err}")
     except Exception as e:

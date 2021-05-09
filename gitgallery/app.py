@@ -15,7 +15,8 @@ def all():
 
 @router.post('/add', status_code=status.HTTP_201_CREATED)
 def add(request: GitUsername):
-    img = scraper(request.username)
-    return {
-        'image': img
-    }
+    user_id = scraper(request.username)
+    if user_id is not None:
+        return {"image": f"https://avatars.githubusercontent.com/u/{user_id}"}
+    else:
+        return{"message": "Not Valid Username"}

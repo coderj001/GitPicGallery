@@ -17,7 +17,7 @@ class User(Base):
     email = Column(String, unique=True, nullable=False)
     password = Column(String, nullable=False)
     create_at = Column(TIMESTAMP, nullable=False, default=datetime.utcnow)
-    gitphoto = relationship("GitPhotos", back_populates="Users")
+    gitphoto = relationship("GitPhotos", back_populates="user")
 
 
 class GitPhotos(Base):
@@ -25,8 +25,8 @@ class GitPhotos(Base):
     __tablename__ = 'Gallery'
 
     id = Column(Integer, primary_key=True, index=True)
-    username = Column(String, unique=True)
-    url = Column(String)
+    username = Column(String)
+    user_id = Column(String)
     create_at = Column(TIMESTAMP, nullable=False, default=datetime.utcnow)
     user_id = Column(Integer, ForeignKey('Users.id'))
-    user = relationship("user", back_populates="Gallery")
+    user = relationship("User", back_populates="gitphoto")
