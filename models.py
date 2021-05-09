@@ -26,7 +26,7 @@ class GitPhotos(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String)
-    user_id = Column(String)
+    git_id = Column(String)
     create_at = Column(TIMESTAMP, nullable=False, default=datetime.utcnow)
     user_id = Column(Integer, ForeignKey('Users.id'))
     user = relationship("User", back_populates="gitphoto")

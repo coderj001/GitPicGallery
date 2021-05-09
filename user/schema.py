@@ -24,3 +24,16 @@ class UserShow(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class UserLogin(BaseModel):
+    email: str
+    password: str
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "email": "coderj001@mail.com",
+                "password": "password"
+            }
+        }
