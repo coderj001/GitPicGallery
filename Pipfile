@@ -7,6 +7,8 @@ name = "pypi"
 fastapi = "*"
 uvicorn = "*"
 sqlalchemy = "*"
+requests = "*"
+bs4 = "*"
 
 [dev-packages]
 isort = "*"
