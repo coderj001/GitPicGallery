@@ -4,14 +4,14 @@
 from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
 from database.database import get_db
 from helper.hashing import Hash
 from helper.JWT import access_token
 from models import User
-from user.schema import Token, UserCreate, UserLogin, UserShow
-from fastapi.security import OAuth2PasswordRequestForm
+from user.schema import Token, UserCreate, UserLogin
 
 router = APIRouter()
 
@@ -19,7 +19,7 @@ router = APIRouter()
 @router.post(
     '/create',
     status_code=status.HTTP_201_CREATED,
-    response_model=UserShow
+    response_model=Token
 )
 def create(
     request: UserCreate,
@@ -49,7 +49,12 @@ def create(
         db.add(new_user)
         db.commit()
         db.refresh(new_user)
-        return new_user
+        new_user_dict = new_user.__dict__
+        new_user_dict['access_token'] = access_token.create_access_token(
+            data={"sub": new_user.email}
+        )
+        new_user_dict['token_type'] = "bearer"
+        return new_user_dict
     except Exception as e:
         print(e)
         raise HTTPException(

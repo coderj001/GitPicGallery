@@ -8,6 +8,8 @@ from database.database import engine
 from gitgallery.app import router as gitgallery_router
 from models import Base
 from user.app import router as user_router
+from fastapi.staticfiles import StaticFiles
+
 
 app = FastAPI()
 
@@ -25,6 +27,9 @@ app.include_router(
     prefix='/user',
     tags=['user']
 )
+
+# index.html page
+# app.mount("/", StaticFiles(directory="build"), name="static")
 
 if __name__ == "__main__":
     import uvicorn

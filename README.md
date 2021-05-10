@@ -9,3 +9,6 @@ Full Stack FastAPI Project, for managing github picture of the users.
 pip install -r requirements.txt
 python main.py
 ```
+
+## TODO
+Front-End React part need to be added.
