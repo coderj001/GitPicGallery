@@ -1,18 +1,12 @@
-#!/usr/bin/env python3
-# hashing.py
-
 from passlib.context import CryptContext
 
 
-class Hash:
+class Hash():
     def __init__(self):
-        self.pwd_context = CryptContext(
-            schemes=["bycrypt"],
-            deprecated="auto"
-        )
+        self.pwd_cxt = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-    def generate_hash(self, password: str) -> str:
-        return self.pwd_context.hash(password)
+    def bcrypt(self, password: str):
+        return self.pwd_cxt.hash(password)
 
-    def varify_password(self, plain_password: str, hashed_password: str) -> str:
-        return self.pwd_context.verify(plain_password, hashed_password)
+    def verify(self, plain_password: str, hash_password: str):
+        return self.pwd_cxt.verify(plain_password, hash_password)

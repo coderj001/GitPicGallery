@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # schema.py
 
-from pydantic import BaseModel
 from datetime import datetime
+
+from pydantic import BaseModel
 
 
 class GitUsername(BaseModel):
-    " Schema for post git username "
     username: str
 
     class Config:
@@ -18,6 +18,7 @@ class GitUsername(BaseModel):
 
 
 class GitPics(BaseModel):
+    username: str
     git_id: str
     create_at: datetime
 

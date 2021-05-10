@@ -32,7 +32,7 @@ def create(request: UserCreate, db: Session = Depends(get_db)):
     new_user = User(
         username=request.username,
         email=request.email,
-        password=Hash().generate_hash(request.password)
+        password=Hash().bcrypt(request.password)
     )
     try:
         db.add(new_user)

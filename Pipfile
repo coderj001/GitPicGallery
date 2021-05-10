@@ -9,7 +9,6 @@ uvicorn = "*"
 SQLAlchemy = "*"
 requests = "*"
 passlib = "*"
-bcrypt = "*"
 
 [dev-packages]
 isort = "*"
