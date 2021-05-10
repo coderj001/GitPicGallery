@@ -11,12 +11,20 @@ from helper.hashing import Hash
 from helper.JWT import access_token
 from models import User
 from user.schema import Token, UserCreate, UserLogin, UserShow
+from fastapi.security import OAuth2PasswordRequestForm
 
 router = APIRouter()
 
 
-@router.post('/create', status_code=status.HTTP_201_CREATED, response_model=UserShow)
-def create(request: UserCreate, db: Session = Depends(get_db)) -> Any:
+@router.post(
+    '/create',
+    status_code=status.HTTP_201_CREATED,
+    response_model=UserShow
+)
+def create(
+    request: UserCreate,
+    db: Session = Depends(get_db)
+) -> Any:
     user_username = db.query(User).filter(
         User.username == request.username).first()
     if user_username is not None:
@@ -50,16 +58,23 @@ def create(request: UserCreate, db: Session = Depends(get_db)) -> Any:
         )
 
 
-@router.post('/auth', status_code=status.HTTP_200_OK, response_model=Token)
-def login(request: UserLogin, db: Session = Depends(get_db)) -> Any:
-    user = db.query(User).filter(User.email == request.email).first()
+@router.post(
+    '/auth',
+    status_code=status.HTTP_200_OK,
+    response_model=Token
+)
+def login(
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    db: Session = Depends(get_db)
+) -> Any:
+    user = db.query(User).filter(User.email == form_data.username).first()
     if user is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Email! {request.email} not found"
+            detail=f"Email! {form_data.username} not found"
         )
 
-    if not Hash().verify(request.password, user.password):
+    if not Hash().verify(form_data.password, user.password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail=f"Please check your password"

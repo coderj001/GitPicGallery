@@ -10,6 +10,7 @@ SQLAlchemy = "*"
 requests = "*"
 passlib = "*"
 python-jose = "*"
+python-multipart = "*"
 
 [dev-packages]
 isort = "*"
@@ -17,6 +18,7 @@ ipython = "*"
 ipdb = "*"
 pylint = "*"
 autopep8 = "*"
+rope = "*"
 
 [requires]
 python_version = "3.8"
