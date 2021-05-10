@@ -6,8 +6,8 @@ from fastapi import FastAPI
 from config import setting
 from database.database import engine
 from gitgallery.app import router as gitgallery_router
-from user.app import router as user_router
 from models import Base
+from user.app import router as user_router
 
 app = FastAPI()
 

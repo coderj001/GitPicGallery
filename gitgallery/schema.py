@@ -2,6 +2,7 @@
 # schema.py
 
 from datetime import datetime
+from typing import Optional, List
 
 from pydantic import BaseModel
 
@@ -21,6 +22,14 @@ class GitPics(BaseModel):
     username: str
     git_id: str
     create_at: datetime
+
+    class Config:
+        orm_mode = True
+
+
+class Message(BaseModel):
+    message: Optional[str] = None
+    data: List[GitPics] = []
 
     class Config:
         orm_mode = True
