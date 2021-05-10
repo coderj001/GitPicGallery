@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # app.py
 
-from typing import Any, List, Dict
+from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from database.database import get_db
-from gitgallery.schema import GitPics, GitUsername, Message
+from gitgallery.schema import GitUsername, Message
 from gitgallery.scraper import scraper
 from helper.oauth2 import get_current_user
 from models import GitPhotos, User
@@ -19,7 +19,7 @@ router = APIRouter()
 @router.get(
     '/',
     status_code=status.HTTP_200_OK,
-    response_model=List[GitPics]
+    response_model=Message
 )
 def all(
     db: Session = Depends(get_db),
@@ -28,9 +28,8 @@ def all(
     user = db.query(User).filter(User.email == get_user.email).first()
     gitpics = db.query(GitPhotos).filter(
         GitPhotos.user_id == user.id).all()
-    return gitpics
-
-# TODO:  <10-05-21, coderj001> #Config schema
+    data = dict({"data": gitpics})
+    return data
 
 
 @router.post(
@@ -47,6 +46,7 @@ def add(
     gitpic = db.query(GitPhotos).filter(GitPhotos.user_id == user.id).filter(
         GitPhotos.username == request.username).first()
     gitpics = None
+    message = None
 
     if gitpic is None:
         gitId = scraper(request.username)
@@ -69,15 +69,16 @@ def add(
     else:
         gitpics = db.query(GitPhotos).filter(
             GitPhotos.user_id == user.id).all()
+        message = f"{request.username} - Already present"
 
-    data = dict({"message": "Some thing", "data": gitpics})
+    data = dict({"message": message, "data": gitpics})
     return data
 
 
 @router.delete(
     '/',
     status_code=status.HTTP_201_CREATED,
-    response_model=Dict[Message, List[GitPics]]
+    response_model=Message
 )
 def delete(
     request: GitUsername,
@@ -88,14 +89,17 @@ def delete(
     gitpic = db.query(GitPhotos).filter(GitPhotos.user_id == user.id).filter(
         GitPhotos.username == request.username).first()
     gitpics = None
+    message = None
 
     if gitpic is None:
         gitpics = db.query(GitPhotos).filter(
             GitPhotos.user_id == user.id).all()
+        message = f"{request.username} dosn't present."
     else:
         db.delete(gitpic)
         db.commit()
         gitpics = db.query(GitPhotos).filter(
             GitPhotos.user_id == user.id).all()
 
-    return gitpics
+    data = dict({"message": message, "data": gitpics})
+    return data

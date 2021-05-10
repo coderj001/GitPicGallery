@@ -1,0 +1,94 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+ACCESS_TOKEN_EXPIRE_MINUTES	helper/JWT.py	/^ACCESS_TOKEN_EXPIRE_MINUTES = 1670$/;"	v
+ALGORITHM	helper/JWT.py	/^ALGORITHM = "HS256"$/;"	v
+APP_NAME	config.py	/^    APP_NAME: str = "GitGallery"$/;"	v	class:CommonSettings
+AccessToken	helper/JWT.py	/^class AccessToken:$/;"	c
+BASE_URL	gitgallery/scraper.py	/^BASE_URL = "https:\/\/api.github.com\/users"$/;"	v
+Base	database/database.py	/^Base = declarative_base()$/;"	v
+CommonSettings	config.py	/^class CommonSettings(BaseSettings):$/;"	c
+Config	gitgallery/schema.py	/^    class Config:$/;"	c	class:GitPics
+Config	gitgallery/schema.py	/^    class Config:$/;"	c	class:GitUsername
+Config	gitgallery/schema.py	/^    class Config:$/;"	c	class:Message
+Config	user/schema.py	/^    class Config:$/;"	c	class:Token
+Config	user/schema.py	/^    class Config:$/;"	c	class:UserCreate
+Config	user/schema.py	/^    class Config:$/;"	c	class:UserLogin
+Config	user/schema.py	/^    class Config:$/;"	c	class:UserShow
+DB_NAME	config.py	/^    DB_NAME: str = "gitgallery"$/;"	v	class:DatabaseSettings
+DB_URL	config.py	/^    DB_URL: str = "sqlite:\/\/\/.\/gitgallery.db"$/;"	v	class:DatabaseSettings
+DEBUG_MODE	config.py	/^    DEBUG_MODE: bool = True$/;"	v	class:CommonSettings
+DatabaseSettings	config.py	/^class DatabaseSettings(BaseSettings):$/;"	c
+GitPhotos	models.py	/^class GitPhotos(Base):$/;"	c
+GitPics	gitgallery/schema.py	/^class GitPics(BaseModel):$/;"	c
+GitUsername	gitgallery/schema.py	/^class GitUsername(BaseModel):$/;"	c
+Github Photo Gallery	README.md	/^## Github Photo Gallery$/;"	s
+HOST	config.py	/^    HOST: str = "0.0.0.0"$/;"	v	class:ServerSettings
+Hash	helper/hashing.py	/^class Hash():$/;"	c
+Installing / Getting Started	README.md	/^### Installing \/ Getting Started$/;"	S	section:Github Photo Gallery
+Message	gitgallery/schema.py	/^class Message(BaseModel):$/;"	c
+PORT	config.py	/^    PORT: int = 8000$/;"	v	class:ServerSettings
+SECRET_KEY	helper/JWT.py	/^SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"$/;"	v
+ServerSettings	config.py	/^class ServerSettings(BaseSettings):$/;"	c
+SessionLocal	database/database.py	/^SessionLocal = sessionmaker($/;"	v
+Setting	config.py	/^class Setting(CommonSettings, ServerSettings, DatabaseSettings):$/;"	c
+Token	user/schema.py	/^class Token(UserShow):$/;"	c
+TokenData	helper/JWT.py	/^class TokenData(BaseModel):$/;"	c
+User	models.py	/^class User(Base):$/;"	c
+UserCreate	user/schema.py	/^class UserCreate(BaseModel):$/;"	c
+UserLogin	user/schema.py	/^class UserLogin(BaseModel):$/;"	c
+UserShow	user/schema.py	/^class UserShow(BaseModel):$/;"	c
+__init__	helper/JWT.py	/^    def __init__(self):$/;"	m	class:AccessToken
+__init__	helper/hashing.py	/^    def __init__(self):$/;"	m	class:Hash
+__tablename__	models.py	/^    __tablename__ = 'Gallery'$/;"	v	class:GitPhotos	file:
+__tablename__	models.py	/^    __tablename__ = 'Users'$/;"	v	class:User	file:
+access_token	helper/JWT.py	/^access_token = AccessToken()$/;"	v
+add	gitgallery/app.py	/^def add($/;"	f
+all	gitgallery/app.py	/^def all($/;"	f
+app	main.py	/^app = FastAPI()$/;"	v
+bcrypt	helper/hashing.py	/^    def bcrypt(self, password: str) -> str:$/;"	m	class:Hash
+create	user/app.py	/^def create($/;"	f
+create_access_token	helper/JWT.py	/^    def create_access_token(self, data: dict):$/;"	m	class:AccessToken
+create_at	models.py	/^    create_at = Column(TIMESTAMP, nullable=False, default=datetime.utcnow)$/;"	v	class:GitPhotos
+create_at	models.py	/^    create_at = Column(TIMESTAMP, nullable=False, default=datetime.utcnow)$/;"	v	class:User
+data	gitgallery/schema.py	/^    data: List[GitPics] = []$/;"	v	class:Message
+delete	gitgallery/app.py	/^def delete($/;"	f
+email	models.py	/^    email = Column(String, unique=True, nullable=False)$/;"	v	class:User
+engine	database/database.py	/^engine = create_engine($/;"	v
+get_current_user	helper/oauth2.py	/^def get_current_user(token: str = Depends(oauth2_scheme)) -> str:$/;"	f
+get_db	database/database.py	/^def get_db() -> SessionLocal:$/;"	f
+git_id	models.py	/^    git_id = Column(String)$/;"	v	class:GitPhotos
+gitgallery_router	main.py	/^from gitgallery.app import router as gitgallery_router$/;"	x
+gitphoto	models.py	/^    gitphoto = relationship("GitPhotos", back_populates="user")$/;"	v	class:User
+id	models.py	/^    id = Column(Integer, primary_key=True, index=True)$/;"	v	class:GitPhotos
+id	models.py	/^    id = Column(Integer, primary_key=True, index=True)$/;"	v	class:User
+login	user/app.py	/^def login($/;"	f
+message	gitgallery/schema.py	/^    message: Optional[str] = None$/;"	v	class:Message
+oauth2_scheme	helper/oauth2.py	/^oauth2_scheme = OAuth2PasswordBearer(tokenUrl='\/user\/auth')$/;"	v
+orm_mode	gitgallery/schema.py	/^        orm_mode = True$/;"	v	class:GitPics.Config
+orm_mode	gitgallery/schema.py	/^        orm_mode = True$/;"	v	class:Message.Config
+orm_mode	user/schema.py	/^        orm_mode = True$/;"	v	class:Token.Config
+orm_mode	user/schema.py	/^        orm_mode = True$/;"	v	class:UserShow.Config
+password	models.py	/^    password = Column(String, nullable=False)$/;"	v	class:User
+project_opened	.vim/.ropeproject/config.py	/^def project_opened(project):$/;"	f
+router	gitgallery/app.py	/^router = APIRouter()$/;"	v
+router	user/app.py	/^router = APIRouter()$/;"	v
+schema_extra	gitgallery/schema.py	/^        schema_extra = {$/;"	v	class:GitUsername.Config
+schema_extra	user/schema.py	/^        schema_extra = {$/;"	v	class:UserCreate.Config
+schema_extra	user/schema.py	/^        schema_extra = {$/;"	v	class:UserLogin.Config
+scraper	gitgallery/scraper.py	/^def scraper(username: str = '') -> str:$/;"	f
+set_prefs	.vim/.ropeproject/config.py	/^def set_prefs(prefs):$/;"	f
+setting	config.py	/^setting = Setting()$/;"	v
+user	models.py	/^    user = relationship("User", back_populates="gitphoto")$/;"	v	class:GitPhotos
+user_id	models.py	/^    user_id = Column(Integer, ForeignKey('Users.id'))$/;"	v	class:GitPhotos
+user_router	main.py	/^from user.app import router as user_router$/;"	x
+username	models.py	/^    username = Column(String(32), unique=True, nullable=False)$/;"	v	class:User
+username	models.py	/^    username = Column(String)$/;"	v	class:GitPhotos
+verify	helper/hashing.py	/^    def verify(self, plain_password: str, hash_password: str) -> bool:$/;"	m	class:Hash
+verify_token	helper/JWT.py	/^    def verify_token(self, token: str, credentials_exception):$/;"	m	class:AccessToken
