@@ -1,8 +1,7 @@
 - baseapp/
-    |_ app_name/
+    |_ app_name/ ( * )
         |_ __init__.py
         |_ app.py
-        |_ models.py
         |_ schema.py
         |_ extra.py [ extra file added if needed ]
     |_ database/
@@ -11,4 +10,5 @@
     |_ helper/ [ if needed ]
         |_ ...
     |_ main.py
+    |_ models.py
     |_ config.py

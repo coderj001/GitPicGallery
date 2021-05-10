@@ -9,6 +9,7 @@ uvicorn = "*"
 SQLAlchemy = "*"
 requests = "*"
 passlib = "*"
+python-jose = "*"
 
 [dev-packages]
 isort = "*"

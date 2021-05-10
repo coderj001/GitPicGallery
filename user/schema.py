@@ -37,3 +37,11 @@ class UserLogin(BaseModel):
                 "password": "password"
             }
         }
+
+
+class Token(UserShow):
+    access_token: str
+    token_type: str
+
+    class Config:
+        orm_mode = True

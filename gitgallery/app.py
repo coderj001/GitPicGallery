@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # app.py
 
-from typing import List
+from typing import Any, List
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
@@ -10,7 +10,6 @@ from database.database import get_db
 from gitgallery.schema import GitPics, GitUsername
 from gitgallery.scraper import scraper
 from models import GitPhotos
-from typing import Any
 
 router = APIRouter()
 
