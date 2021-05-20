@@ -8,7 +8,7 @@ from database.database import engine
 from gitgallery.app import router as gitgallery_router
 from models import Base
 from user.app import router as user_router
-from fastapi.staticfiles import StaticFiles
+# from fastapi.staticfiles import StaticFiles
 
 
 app = FastAPI()

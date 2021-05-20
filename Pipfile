@@ -11,7 +11,6 @@ requests = "*"
 passlib = "*"
 python-jose = "*"
 python-multipart = "*"
-aiofiles = "*"
 
 [dev-packages]
 isort = "*"
